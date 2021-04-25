@@ -20,7 +20,7 @@ int findLength(void) {      //findout length of link list
     return count;
 }
 
-void insert(int a) {        //insert element in sequence in forward
+void insert(int a) {        //insert element in sequence from head to backward
     newnode = (struct node *)malloc(sizeof(struct node));
     if(head == NULL) {
         newnode->data = a;
@@ -54,6 +54,22 @@ void insertAt(int pos, int a) {     // can't insert at first and last position o
     return;
 }
 
+void begin(int data) {            //insert element from the head to forward
+    if(head == NULL) {
+        head = (struct node *)malloc(sizeof(struct node));
+        head->data = data;
+        head->next = NULL;
+        temp = head;
+    } else {
+        struct node *begHead = (struct node *)malloc(sizeof(struct node));
+        begHead->data = data;
+        begHead->next = head;
+        head = begHead;
+        begHead = NULL;
+    }
+    return;
+}
+
 void display(void) {                    // Display single element
     struct node *tap = head;
     printf(" %d \n", tap->data);
@@ -75,6 +91,7 @@ void displayAll(void) {                 //Display all elements
 }
 
 int main()  {
+    begin(1000); begin(67);
     insert(10); insert(20); insert(30); insert(40);insert(50);insert(60);insert(70);insert(80);insert(90);
     //display(); display();
     //display(); //can't use display() and displayAll() function at same time
